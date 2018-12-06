@@ -58,7 +58,6 @@ namespace WpfApp1
             await Task.Run(() =>
              {
                  Bitmap greyBitMap = imageProcessing.greyScaleAsyn();
-                 Thread.Sleep(2000);
                  greyBitMap.Save(ImageProcessing.IMAGEGREYASYN);
              });
             imageAsyn.Source = new BitmapImage(new Uri(path + "\\" + ImageProcessing.IMAGEGREYASYN));
