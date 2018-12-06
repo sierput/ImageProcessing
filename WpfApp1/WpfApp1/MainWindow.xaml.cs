@@ -37,18 +37,33 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            if (colorImage.Source == null)
-                colorImage.Source = new BitmapImage(new Uri(loadPicture()));
+            if (colorImage.Source != null)
+            {
+                MessageBox.Show("The image has been selected");
+                return;
+            }
+            string imagePath = loadPicture();
+            if (imagePath.Length == 0)
+            {
+                MessageBox.Show("File path cannot be empty");
+                return;
+            }
+            colorImage.Source = new BitmapImage(new Uri(imagePath));
         }
 
         private void Load_grey_image_Click(object sender, RoutedEventArgs e)
         {
             if (greyImage.Source != null)
+            {
+                MessageBox.Show("The image has been selected");
                 return;
+            }
            Bitmap image = imageProcessing.loadImageFromPath(loadPicture());
             if (image == null)
+            {
+                MessageBox.Show("File path cannot be empty");
                 return;
+            }
             BitmapImage greyBitMapImage = toBitmapImage(imageProcessing.grayScale(image));
             greyImage.Source = greyBitMapImage;
             TimeLabel.Content = "Time: " + imageProcessing.Time + "ms";
@@ -59,13 +74,19 @@ namespace WpfApp1
         async private void Grey_asyn_button_Click(object sender, RoutedEventArgs e)
         {
             if (imageAsyn.Source != null)
+            {
+                MessageBox.Show("The image has been selected");
                 return;
+            }
             BitmapImage greyBitMapImage = null;
             await Task.Run(() =>
              {
                  Bitmap image = imageProcessing.loadImageFromPath(loadPicture());
                  if (image == null)
+                 {
+                     MessageBox.Show("File path cannot be empty");
                      return;
+                 }
                  greyBitMapImage = toBitmapImage(imageProcessing.greyScaleAsyn(image));
              });
             imageAsyn.Source = greyBitMapImage;
@@ -74,10 +95,16 @@ namespace WpfApp1
         private void Nativ_cpp_grey_Click(object sender, RoutedEventArgs e)
         {
             if (imageGreyNative.Source != null)
+            {
+                MessageBox.Show("The image has been selected");
                 return;
+            }
             Bitmap image = imageProcessing.loadImageFromPath(loadPicture());
             if (image == null)
+            {
+                MessageBox.Show("File path cannot be empty");
                 return;
+            }
             BitmapImage greyBitMapImage = toBitmapImage(imageProcessing.nativCppGreyScale(image));
             imageGreyNative.Source = greyBitMapImage;
             TimeNativLabel.Content = "Time: " + imageProcessing.TimeNativ + "ms";
