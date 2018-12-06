@@ -17,9 +17,11 @@ namespace ImageProcessingLibrary
         public static string IMAGEGREY = "grey";
         public static string IMAGEGREYASYN = "greyAsyn";
         public static string IMAGENATIV = "greyScaleNativ";
+        private string dllNativPath = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\..\\Debug\\";
 
         public ImageProcessing(string path)
         {
+            Directory.SetCurrentDirectory(dllNativPath);
             loadImage(path);
         }
 
@@ -91,10 +93,10 @@ namespace ImageProcessingLibrary
             bmp.Save("greyScaleNativ");
         }
 
-        [DllImport("C:\\Users\\msierputowski\\source\\repos\\WpfApp1\\Debug\\DlLNativCpp.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("DlLNativCpp.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern void HelloWorld();
 
-        [DllImport("C:\\Users\\msierputowski\\source\\repos\\WpfApp1\\Debug\\DlLNativCpp.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("DlLNativCpp.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte*  GreyScaleNative(byte* array, int size);
 
         public Bitmap BitMapValue { get => bitMap; set => bitMap = value; }
