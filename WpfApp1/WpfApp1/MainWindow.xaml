@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1169.612">
+    <Grid Margin="0,0,2,0">
+        <Button Content="image" HorizontalAlignment="Left" Margin="82,34,0,0" VerticalAlignment="Top" Width="81" Click="Button_Click"/>
+        <Image x:Name="colorImage" HorizontalAlignment="Left" Height="223" Margin="33,73,0,0" VerticalAlignment="Top" Width="200"/>
+        <Button x:Name="LoadGreyImage" Content="grey image" HorizontalAlignment="Left" Margin="446,34,0,0" VerticalAlignment="Top" Width="81" Click="Load_grey_image_Click"/>
+        <Image x:Name="greyImage" HorizontalAlignment="Left" Height="223" Margin="385,73,0,0" VerticalAlignment="Top" Width="200"/>
+        <Label x:Name="TimeLabel" Content="" HorizontalAlignment="Left" Margin="385,320,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="grey_asyn_button" Content="grey asyn" HorizontalAlignment="Left" Margin="694,34,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.452,-0.304" Click="Grey_asyn_button_Click"/>
+        <Image x:Name="imageAsyn" HorizontalAlignment="Left" Height="233" Margin="635,73,0,0" VerticalAlignment="Top" Width="200"/>
+        <Button x:Name="Nativ_cpp_grey" Content="NativCpp" HorizontalAlignment="Left" Margin="975,34,0,0" VerticalAlignment="Top" Width="75" Click="Nativ_cpp_grey_Click"/>
+        <Image x:Name="imageGreyNative" HorizontalAlignment="Left" Height="233" Margin="916,73,0,0" VerticalAlignment="Top" Width="200"/>
+        <Label x:Name="TimeNativLabel" Content="" HorizontalAlignment="Left" Margin="957,320,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="TimeCompare" Content="" HorizontalAlignment="Left" Margin="694,365,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
