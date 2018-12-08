@@ -17,7 +17,7 @@ namespace ImageProcessingLibrary
             Directory.SetCurrentDirectory(dllNativPath);
         }
 
-        public Bitmap grayScale(Bitmap greyBitMap)
+        public Bitmap greyScale(Bitmap greyBitMap)
         {
             greyScaleProcesing(greyBitMap);
             return greyBitMap;
@@ -38,7 +38,7 @@ namespace ImageProcessingLibrary
             }
         }
 
-        public Bitmap greyScaleAsyn(Bitmap greyBitMap)
+        public Bitmap greyScaleAsync(Bitmap greyBitMap)
         {
             greyScaleProcesing(greyBitMap);
             return greyBitMap;

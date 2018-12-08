@@ -12,11 +12,11 @@ namespace ImageProcessingLibrary
     {
         private long time;
 
-        public Bitmap imageProcessingTime(Func<Bitmap, Bitmap> grayScale, Bitmap c)
+        public Bitmap imageProcessingTime(Func<Bitmap, Bitmap> greyScale, Bitmap c)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            Bitmap bitMap = grayScale.Invoke(c);
+            Bitmap bitMap = greyScale.Invoke(c);
             sw.Stop();
             Time = sw.ElapsedMilliseconds;
             return bitMap;

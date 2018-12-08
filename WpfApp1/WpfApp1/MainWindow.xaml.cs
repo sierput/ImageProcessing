@@ -37,7 +37,7 @@ namespace WpfApp1
             imageProcessing = new ImageProcessing();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void buttonClick(object sender, RoutedEventArgs e)
         {
             if (colorImage.Source != null)
             {
@@ -53,7 +53,7 @@ namespace WpfApp1
             colorImage.Source = new BitmapImage(new Uri(imagePath));
         }
 
-        private void Load_grey_image_Click(object sender, RoutedEventArgs e)
+        private void loadGreyImageClick(object sender, RoutedEventArgs e)
         {
             if (greyImage.Source != null)
             {
@@ -67,17 +67,17 @@ namespace WpfApp1
                 return;
             }
             timer = new TimerProcessing();
-            Bitmap bitmapGrey = timer.imageProcessingTime(imageProcessing.grayScale, image);
+            Bitmap bitmapGrey = timer.imageProcessingTime(imageProcessing.greyScale, image);
             BitmapImage greyBitMapImage = toBitmapImage(bitmapGrey);
             greyImage.Source = greyBitMapImage;
-            TimeLabel.Content = "Time: " + timer.Time + "ms";
+            timeLabel.Content = "Time: " + timer.Time + "ms";
             if (timerNativ != null)
-                TimeCompare.Content = "Time compare: " + (timer.Time - timerNativ.Time) + "ms";
+                timeCompare.Content = "Time compare: " + (timer.Time - timerNativ.Time) + "ms";
         }
 
-        async private void Grey_asyn_button_Click(object sender, RoutedEventArgs e)
+        async private void greyAsyncButtonClick(object sender, RoutedEventArgs e)
         {
-            if (imageAsyn.Source != null)
+            if (imageAsync.Source != null)
             {
                 MessageBox.Show("The image has been selected");
                 return;
@@ -91,12 +91,12 @@ namespace WpfApp1
                      MessageBox.Show("File path cannot be empty");
                      return;
                  }
-                 greyBitMapImage = toBitmapImage(imageProcessing.greyScaleAsyn(image));
+                 greyBitMapImage = toBitmapImage(imageProcessing.greyScaleAsync(image));
              });
-            imageAsyn.Source = greyBitMapImage;
+            imageAsync.Source = greyBitMapImage;
         }
 
-        private void Nativ_cpp_grey_Click(object sender, RoutedEventArgs e)
+        private void nativCppGreyClick(object sender, RoutedEventArgs e)
         {
             if (imageGreyNative.Source != null)
             {
@@ -113,9 +113,9 @@ namespace WpfApp1
             Bitmap bitmapGrey = timerNativ.imageProcessingTime(imageProcessing.nativCppGreyScale, image);
             BitmapImage greyBitMapImage = toBitmapImage(bitmapGrey);
             imageGreyNative.Source = greyBitMapImage;
-            TimeNativLabel.Content = "Time: " + timerNativ.Time + "ms";
+            timeNativLabel.Content = "Time: " + timerNativ.Time + "ms";
             if (timer != null)
-                TimeCompare.Content = "Time compare: " + (timer.Time - timerNativ.Time) + "ms";
+                timeCompare.Content = "Time compare: " + (timer.Time - timerNativ.Time) + "ms";
         }
 
         private string loadPicture()
