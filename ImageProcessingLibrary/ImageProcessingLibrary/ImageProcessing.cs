@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Runtime.InteropServices;
@@ -11,8 +10,6 @@ namespace ImageProcessingLibrary
 {
     unsafe public class ImageProcessing
     {
-        private long time;
-        private long timeNativ;
         private string dllNativPath = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\..\\Debug\\";
 
         public ImageProcessing()
@@ -22,11 +19,7 @@ namespace ImageProcessingLibrary
 
         public Bitmap grayScale(Bitmap greyBitMap)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             greyScaleProcesing(greyBitMap);
-            sw.Stop();
-            time = sw.ElapsedMilliseconds;
             return greyBitMap;
         }
 
@@ -62,8 +55,6 @@ namespace ImageProcessingLibrary
 
         unsafe public Bitmap nativCppGreyScale(Bitmap bmp)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();  
             Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
             System.Drawing.Imaging.BitmapData bmpData =
                 bmp.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite,
@@ -81,8 +72,6 @@ namespace ImageProcessingLibrary
             }
             System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr, bytes);
             bmp.UnlockBits(bmpData);
-            sw.Stop();
-            TimeNativ = sw.ElapsedMilliseconds;
             return bmp;
         }
 
@@ -91,9 +80,6 @@ namespace ImageProcessingLibrary
 
         [DllImport("DlLNativCpp.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte*  GreyScaleNative(byte* array, int size);
-
-        public long Time { get => time; set => time = value; }
-        public long TimeNativ { get => timeNativ; set => timeNativ = value; }
     }
 
 }

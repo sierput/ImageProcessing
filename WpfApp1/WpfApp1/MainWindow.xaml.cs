@@ -29,6 +29,8 @@ namespace WpfApp1
     {
         private string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
         ImageProcessing imageProcessing;
+        TimerProcessing timer = null;
+        TimerProcessing timerNativ = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -64,11 +66,13 @@ namespace WpfApp1
                 MessageBox.Show("File path cannot be empty");
                 return;
             }
-            BitmapImage greyBitMapImage = toBitmapImage(imageProcessing.grayScale(image));
+            timer = new TimerProcessing();
+            Bitmap bitmapGrey = timer.imageProcessingTime(imageProcessing.grayScale, image);
+            BitmapImage greyBitMapImage = toBitmapImage(bitmapGrey);
             greyImage.Source = greyBitMapImage;
-            TimeLabel.Content = "Time: " + imageProcessing.Time + "ms";
-            if (imageProcessing.TimeNativ != 0)
-                TimeCompare.Content = "Time compare: " + (imageProcessing.Time - imageProcessing.TimeNativ) + "ms";
+            TimeLabel.Content = "Time: " + timer.Time + "ms";
+            if (timerNativ != null)
+                TimeCompare.Content = "Time compare: " + (timer.Time - timerNativ.Time) + "ms";
         }
 
         async private void Grey_asyn_button_Click(object sender, RoutedEventArgs e)
@@ -105,11 +109,13 @@ namespace WpfApp1
                 MessageBox.Show("File path cannot be empty");
                 return;
             }
-            BitmapImage greyBitMapImage = toBitmapImage(imageProcessing.nativCppGreyScale(image));
+            timerNativ = new TimerProcessing();
+            Bitmap bitmapGrey = timerNativ.imageProcessingTime(imageProcessing.nativCppGreyScale, image);
+            BitmapImage greyBitMapImage = toBitmapImage(bitmapGrey);
             imageGreyNative.Source = greyBitMapImage;
-            TimeNativLabel.Content = "Time: " + imageProcessing.TimeNativ + "ms";
-            if (imageProcessing.Time != 0)
-                TimeCompare.Content = "Time compare: " + (imageProcessing.Time - imageProcessing.TimeNativ) + "ms";
+            TimeNativLabel.Content = "Time: " + timerNativ.Time + "ms";
+            if (timer != null)
+                TimeCompare.Content = "Time compare: " + (timer.Time - timerNativ.Time) + "ms";
         }
 
         private string loadPicture()
