@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp1MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1MVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1169.612">
+    <Grid Margin="0,0,2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="buttonImage" Content="image" HorizontalAlignment="Left" Margin="82,34,0,0" VerticalAlignment="Top" Width="81" Command="{Binding buttonImage}"/>
+        <Image x:Name="colorImage" HorizontalAlignment="Left" Height="223" Margin="33,73,0,0" VerticalAlignment="Top" Width="200" Source="{Binding ColorImage}"/>
+        <Button x:Name="buttonGreyImage" Content="grey image" HorizontalAlignment="Left" Margin="446,34,0,0" VerticalAlignment="Top" Width="81" Command="{Binding buttonGreyImage}"/>
+        <Image x:Name="greyImage" HorizontalAlignment="Left" Height="223" Margin="385,73,0,0" VerticalAlignment="Top" Width="200" Source="{Binding GreyImage}"/>
+        <Label x:Name="timeLabel" HorizontalAlignment="Left" Margin="385,320,0,0" VerticalAlignment="Top" Content="{Binding TimeLabel}"/>
+        <Button x:Name="buttonGreyAsync" Content="grey async" HorizontalAlignment="Left" Margin="694,34,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.452,-0.304" Command="{Binding buttonGreyAsync}"/>
+        <Image x:Name="imageAsync" HorizontalAlignment="Left" Height="233" Margin="635,73,0,0" VerticalAlignment="Top" Width="200" Source="{Binding ImageAsync}"/>
+        <Button x:Name="buttonNativCppGrey" Content="NativCpp" HorizontalAlignment="Left" Margin="975,34,0,0" VerticalAlignment="Top" Width="75" Command="{Binding buttonNativCppGrey}"/>
+        <Image x:Name="imageGreyNative" HorizontalAlignment="Left" Height="233" Margin="916,73,0,0" VerticalAlignment="Top" Width="200" Source="{Binding ImageGreyNative}"/>
+        <Label x:Name="timeNativLabel" HorizontalAlignment="Left" Margin="957,320,0,0" VerticalAlignment="Top" Content="{Binding TimeNativLabel}"/>
+        <Label x:Name="timeCompare" HorizontalAlignment="Left" Margin="694,365,0,0" VerticalAlignment="Top" Content="{Binding TimeCompare}"/>
+    </Grid>
+</Window>
